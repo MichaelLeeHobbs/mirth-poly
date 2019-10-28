@@ -6,9 +6,9 @@ This produces an export of a channel in a detailed directory structure like this
     * destinationConnectors - directory containing a subdirectory for each destination connector
     * sourceConnector - directory containing the source connector
         * transformers
-            main.js
-            test.js
-            transformers.json
+           * main.js
+           * test.js
+           * transformers.json
         * channel.json - the full channel export in JSON format
         * deployScript.js
         * postprocessingScript.js
