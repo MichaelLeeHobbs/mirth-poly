@@ -9,3 +9,4 @@ To try it out edit the stest.js file and set MIRTH_USER and MIRTH_PASSWORD
 3. getChannels() - downloads Channels.xml
 4. processChannels() - processes Channels.xml into files and folders - Not complete yet
 5. testMirthApi() - just test the mirth api
+6. main() - calls 1-4 in the correct order and waits as needed

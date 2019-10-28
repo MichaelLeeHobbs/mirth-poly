@@ -174,8 +174,11 @@ const processChannels = async () => {
     fs.writeFileSync('channels.json', $js(channels))
     //console.log(JSON.stringify(codeTemplateLibrary, null, 2))
 }
-// getCodeTemplateLibraries()
-// processCodeTemplateLibraries()
-// getChannels()
-// processChannels()
-testMirthApi()
+async function main() {
+    await getCodeTemplateLibraries()
+    await processCodeTemplateLibraries()
+    await getChannels()
+    await processChannels()
+}
+main()
+//testMirthApi()
