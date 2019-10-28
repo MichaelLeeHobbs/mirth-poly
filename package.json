@@ -1,0 +1,21 @@
+{
+  "name": "mirth-poly",
+  "version": "0.0.1",
+  "description": "Mirth Poly - Import and export Mirth channels in a developer and repo friendly way.",
+  "main": "src/index.js",
+  "author": "Michael Hobbs <michael.lee.hobbs@gmail.com>",
+  "license": "mit",
+  "dependencies": {
+    "change-case": "^3.1.0",
+    "csvtojson": "^2.0.10",
+    "fs-extra": "^8.1.0",
+    "mirth-api": "0.0.4",
+    "node-fetch": "^2.6.0",
+    "swagger-client": "^3.9.5",
+    "xml2js": "^0.4.22",
+    "yargs": "^14.2.0"
+  },
+  "bin": {
+    "mirthpoly": "./src/index.js"
+  }
+}
