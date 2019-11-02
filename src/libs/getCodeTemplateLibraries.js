@@ -7,8 +7,10 @@ const getCodeTemplateLibraries = async ({mirthClient, outfile='CodeTemplates.xml
     //     .catch((e) => console.error('Login FAILED!', e))
 
     let res = await mirthClient.CodeTemplates.getCodeTemplateLibraries({includeCodeTemplates: true})
+    let json = (await xmlParser.parseStringPromise(res.text)).list.codeTemplateLibrary
     fs.writeFileSync(`${outpath}/${outfile}`, res.text)
-    return await xmlParser.parseStringPromise(res.text).then(res => res.list.codeTemplateLibrary)
+    fs.writeFileSync(`${outpath}/${outfile.replace('xml', 'json')}`, JSON.stringify(json, null, 2))
+    return json
 }
 
 module.exports = getCodeTemplateLibraries
