@@ -1,53 +1,42 @@
 #! /usr/bin/env node
-
-const path = require('path')
-const fs = require('fs-extra')
-const csv = require('csvtojson')
 const yargs = require("yargs")
-const fetch = require('node-fetch')
+const fs = require('fs-extra')
 
-// const options = yargs
-//     .usage("Usage: --input <input.csv> --outpath <outputPath>")
-//     .example(`Example: 'trgaudit --files 2016dates.csv --outpath ./out/2016'`)
-//     .option("i", {alias: "input", describe: "Input csv", type: "string", demandOption: true})
-//     .option("o", {
-//         alias: "outpath",
-//         describe: `Output path for where to write the output csv files`,
-//         type: "string",
-//         demandOption: true
-//     })
-//     .argv
-//
-//
-// const input = path.resolve(process.cwd(), options.input)
-//
-// const writeCSVFile = (fileName, data) => {
-//     let out = 'accession_number,dt,study_id,modality,user_name,report_count,data\n'
-//     data.forEach(({accession_number,dt,study_id,modality,user_name,report_count,DATA})=>{
-//         accession_number = accession_number || 'naf'
-//         if (accession_number.indexOf('E+') > -1) accession_number = Number.parseInt(accession_number)
-//         out += `"${accession_number}","${dt}",${study_id},${modality},${user_name},${report_count},"${DATA}"\n`
-//     })
-//     fs.writeFileSync(fileName, out)
-// }
-//
-// let records = new Map()
-// csv({noheader: true, delimiter: ',', headers: ['accession_number','dt','study_id','modality','user_name','report_count','data']})
-//     .fromFile(input)
-//     .then((arr) => {
-//         arr.forEach((ele)=>{
-//             let accession_number = ele.accession_number || 'naf'
-//             if (accession_number.indexOf('E+') > -1) accession_number = Number.parseInt(accession_number)
-//             let id = `${accession_number > '' ? accession_number : 'naf'}_${ele.study_id}`
-//             if(records.has(id)) {
-//                 records.get(id).push(ele)
-//             } else {
-//                 records.set(id, [ele])
-//             }
-//         })
-//         fs.ensureDirSync(options.outpath)
-//         records.forEach((value, key)=>{
-//             let fileName = path.resolve(`${options.outpath}/${key.replace(/\//g, '_')}.csv`.replace(/[*]/g, ''))
-//             writeCSVFile(fileName,value)
-//         })
-//     })
+
+const MirthApi = require('mirth-api')
+const getCodeTemplateLibraries = require('./libs/getCodeTemplateLibraries')
+const processCodeTemplateLibraries = require('./libs/processCodeTemplateLibraries')
+const getChannels = require('./libs/getChannels')
+const processChannels = require('./libs/processChannels')
+
+const options = yargs
+    .usage("Usage: --username <mirthUserName> --password <mirthUserPassword>")
+    .example(`Example: 'mirth-poly --username admin --password admin --host 10.100.96.61 --port 8443 --notls'`)
+    .option("u", {alias: "username", describe: "Mirth User Name", type: "string", demandOption: true})
+    .option("p", {alias: "password", describe: "Mirth User Password", type: "string", demandOption: true})
+    .option("h", {alias: "host", describe: "Mirth Host", type: "string", demandOption: false, default: '127.0.0.1'})
+    .option("o", {alias: "port", describe: "Mirth Port", type: "string", demandOption: false, default: '8443'})
+    .option("n", {alias: "notls", describe: "Disable TLS Check - required for self signed untrusted cert", type: "boolean", demandOption: false, default: false})
+    .option("d", {alias: "outpath", describe: "Path to write files to", type: "string", demandOption: false, default: './mirthSrc'})
+    .argv
+
+let {username, password, host, port, notls: disableTLSCheck, outpath} = options
+
+async function main() {
+    let mirthClient
+    try {
+        mirthClient = await new MirthApi({host, port, username, password, disableTLSCheck})
+    } catch (e) {
+        console.error('Login FAILED!')
+        throw e
+    }
+    fs.ensureDirSync(outpath)
+
+    let codeTemplateLibrary = await getCodeTemplateLibraries({mirthClient, outpath})
+    await processCodeTemplateLibraries({codeTemplateLibrary, outpath})
+    let channels = await getChannels({mirthClient, outpath})
+    await processChannels({channels, outpath})
+}
+
+main()
+

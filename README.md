@@ -15,7 +15,31 @@ This produces an export of a channel in a detailed directory structure like this
         * undeployScript.js
 
 
-To try it out edit the stest.js file and set MIRTH_USER and MIRTH_PASSWORD
+## To try it out:
+1. npm install
+2. (windows) node .\src\index.js --username admin --password admin -h 127.0.0.1 --notls
+3. (linux) node ./src/index.js --username admin --password admin -h 127.0.0.1 --notls
+4. node ./src/index.js # show help
+
+## Params/Options:
+```text
+Usage: --username <mirthUserName> --password <mirthUserPassword>
+
+Options:
+  --help          Show help                                            [boolean]
+  --version       Show version number                                  [boolean]
+  -u, --username  Mirth User Name                            [string] [required]
+  -p, --password  Mirth User Password                        [string] [required]
+  -h, --host      Mirth Host                     [string] [default: "127.0.0.1"]
+  -o, --port      Mirth Port                          [string] [default: "8443"]
+  -n, --notls     Disable TLS Check - required for self signed untrusted cert
+                                                      [boolean] [default: false]
+  -d, --outpath   Path to write files to        [string] [default: "./mirthSrc"]
+
+Examples:
+  Example: 'mirth-poly --username admin --password admin --host 10.100.96.61
+  --port 8443 --notls'
+```
 
 ## Test Functions
 1. getCodeTemplateLibraries() - downloads CodeTemplates.xml
