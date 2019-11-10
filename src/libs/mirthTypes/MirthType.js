@@ -16,6 +16,12 @@ class MirthType {
         this._debug = debug
     }
 
+    extractParam(params, key) {
+        let res = Array.isArray(params) ? params[0][key] : params[key]
+        res = (Array.isArray(res)) ? res[0] : res
+        return  res
+    }
+
     get debug() {
         return this._debug
     }

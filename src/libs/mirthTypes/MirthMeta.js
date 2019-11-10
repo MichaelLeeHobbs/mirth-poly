@@ -1,7 +1,7 @@
 const MirthType = require('./MirthType')
 
-class Meta extends MirthType {
-    constructor({version, mirthClass}) {
+class MirthMeta extends MirthType {
+    constructor({version, 'class': mirthClass}) {
         super({type: 'object'})
         this._version = version
         this._mirthClass = mirthClass
@@ -29,4 +29,4 @@ class Meta extends MirthType {
     }
 }
 
-module.exports = Meta
+module.exports = MirthMeta

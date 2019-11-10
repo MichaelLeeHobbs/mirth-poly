@@ -1,16 +1,16 @@
-const MirthObject = require('./MirthObject')
-const mirthTypes = require('./mirthTypes')
+const MirthObject = require('./mirthTypes/MirthObject')
+const {Meta, MirthString, MirthDate,  ContextSet, CodeTemplateProperties} = require('./mirthTypes')
 
 class MirthCodeTemplate extends MirthObject {
-    constructor({$: {version}, id, name, revision, lastModified, contextSet, properties, debug}) {
-        super({debug})
-        this.$ = mirthTypes.Meta({version})
-        this.id = mirthTypes.String(id)
-        this.name = mirthTypes.String(name)
-        this.revision = mirthTypes.String(revision)
-        this.lastModified = mirthTypes.Date(lastModified)
-        this.contextSet = mirthTypes.ContextSet(contextSet[0].delegate[0].contextType)
-        this.properties = mirthTypes.CodeTemplateProperties(properties[0])
+    constructor({$, id, name, revision, lastModified, contextSet, properties}) {
+        super({})
+        this.$ = new Meta($)
+        this.id = new MirthString(id)
+        this.name = new MirthString(name)
+        this.revision = new MirthString(revision)
+        this.lastModified = new MirthDate(lastModified)
+        this.contextSet = new ContextSet(contextSet[0].delegate[0].contextType)
+        this.properties = new CodeTemplateProperties(properties)
     }
 
     get code() {

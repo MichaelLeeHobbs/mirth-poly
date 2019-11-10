@@ -2,7 +2,7 @@ const MirthType = require('./MirthType')
 
 // made string a separate class to avoid circular reference
 class MirthString extends MirthType {
-    constructor({value}) {
+    constructor(value) {
         super({value, type: 'string'})
     }
 }

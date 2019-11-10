@@ -18,9 +18,9 @@ const CONTEXT_TYPES = [
     "CHANNEL_POSTPROCESSOR"
 ]
 
-class ContextSet extends MirthType {
-    constructor({value}) {
-        super({type: 'object', value})
+class MirthContextSet extends MirthType {
+    constructor(contextType) {
+        super({type: 'object'})
         this._DESTINATION_RESPONSE_TRANSFORMER = false
         this._CHANNEL_BATCH = false
         this._CHANNEL_PREPROCESSOR = false
@@ -36,7 +36,7 @@ class ContextSet extends MirthType {
         this._CHANNEL_ATTACHMENT = false
         this._GLOBAL_DEPLOY = false
         this._CHANNEL_POSTPROCESSOR = false
-        this._parseArray(value)
+        this._parseArray(contextType)
     }
 
     _parseArray(arr) {
@@ -171,11 +171,11 @@ class ContextSet extends MirthType {
     }
 
     set value(value) {
-        // todo console.warn('You can not set the value of a ContextSet. Use normal array methods to alter the ContextSet. Example: ContextSet.value[1] = "a" or ContextSet.value.push(3)')
+        // todo console.warn('You can not set the value of a MirthContextSet. Use normal array methods to alter the MirthContextSet. Example: MirthContextSet.value[1] = "a" or MirthContextSet.value.push(3)')
     }
 
     get type() {
-        return 'ContextSet'
+        return 'MirthContextSet'
     }
 
     toJson() {
@@ -191,4 +191,4 @@ class ContextSet extends MirthType {
     }
 }
 
-module.exports = ContextSet
+module.exports = MirthContextSet

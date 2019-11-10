@@ -199,3 +199,4 @@ $RECYCLE.BIN/
 /mirthSrc/
 /src/test/actual.json
 /src/test/expected.json
+/src/test/results/

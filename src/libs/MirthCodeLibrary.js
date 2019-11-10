@@ -1,20 +1,19 @@
-const MirthObject = require('./MirthObject')
+const MirthObject = require('./mirthTypes/MirthObject')
 const MirthCodeTemplate = require('./MirthCodeTemplate')
-const mirthTypes = require('./mirthTypes')
-const xml2js = require('xml2js')
+const {Meta, MirthString, MirthDate, MirthBoolean, MirthArray} = require('./mirthTypes')
 
 class MirthCodeLibrary extends MirthObject {
-    constructor({$: {version}, id, name, revision, lastModified, description, includeNewChannels, enabledChannelIds, disabledChannelIds, codeTemplates, debug = false}) {
-        super({debug})
-        this.$ = mirthTypes.Meta({version})
-        this.id = mirthTypes.String(id)
-        this.name = mirthTypes.String(name)
-        this.revision = mirthTypes.String(revision)
-        this.lastModified = mirthTypes.Date(lastModified)
-        this.description = mirthTypes.String(description)
-        this.includeNewChannels = mirthTypes.Boolean(includeNewChannels)
-        this.enabledChannelIds = mirthTypes.StringArray(enabledChannelIds, debug)
-        this.disabledChannelIds = mirthTypes.StringArray(disabledChannelIds, debug)
+    constructor({$, id, name, revision, lastModified, description, includeNewChannels, enabledChannelIds, disabledChannelIds, codeTemplates}) {
+        super({})
+        this.$ = new Meta($)
+        this.id = new MirthString(id)
+        this.name = new MirthString(name)
+        this.revision = new MirthString(revision)
+        this.lastModified = new MirthDate(lastModified)
+        this.description = new MirthString(description)
+        this.includeNewChannels = new MirthBoolean(includeNewChannels)
+        this.enabledChannelIds = new MirthArray(enabledChannelIds, 'string')
+        this.disabledChannelIds = new MirthArray(disabledChannelIds, 'string')
         this.codeTemplates = []
 
         /*

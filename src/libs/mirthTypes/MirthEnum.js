@@ -1,6 +1,6 @@
 const MirthType = require('./MirthType')
 
-class Enum extends MirthType {
+class MirthEnum extends MirthType {
     constructor({name, value = '', strict = false, allowedValues = []}) {
         super({name, type: 'string', value})
         this._strict = strict
@@ -31,4 +31,4 @@ class Enum extends MirthType {
     }
 }
 
-module.exports = MirthType
+module.exports = MirthEnum
