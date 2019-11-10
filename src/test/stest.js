@@ -4,7 +4,7 @@ const xml2js = require('xml2js')
 const xmlParser = new xml2js.Parser()
 const fs = require('fs-extra')
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
-const changeCase = require('change-case')
+const changeCase = require('change-case/change-case')
 
 const MIRTH_USER = 'admin'
 const MIRTH_PASSWORD = 'admin'
@@ -20,8 +20,6 @@ const testMirthApi = async () => {
     console.log('cookie', mirthClient.cookie)
     console.log('getCurrentUser: ', await mirthClient.Users.getCurrentUser())
     console.log('createUser: ', await mirthClient.Users.createUser({body: `<user><username>test</username></user>`}).catch(console.error))
-
-
 }
 
 const getCodeTemplateLibraries = async () => {

@@ -1,5 +1,6 @@
 class MirthObject {
-    constructor({xml, json, xmlJson}) {
+    constructor({debug}) {
+        this._debug = debug
     }
     parseXml(xml) {
         throw new Error('Not implemented!')
@@ -15,6 +16,14 @@ class MirthObject {
     }
     toJson() {
         throw new Error('Not implemented!')
+    }
+
+    get debug() {
+        return this._debug
+    }
+
+    set debug(value) {
+        this._debug = value
     }
 }
 

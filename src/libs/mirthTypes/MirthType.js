@@ -1,6 +1,3 @@
-const xml2js = require('xml2js')
-const xmlBuilder = new xml2js.Builder()
-
 const stringToBoolean = (str) => {
     if (!str.toLowerCase) return str
     if (str.toLowerCase() === 'true') return true
@@ -9,25 +6,30 @@ const stringToBoolean = (str) => {
 }
 
 class MirthType {
-    constructor({name, key = '', type = 'string', value = '', structure = 'array'}) {
-        this._name = name
+    constructor({key = '', type = 'string', value = '', structure = 'array', debug = false}) {
         this._key = key
-        this._type = type
+        this._mirthType = type
         this._structure = structure
-        this._value = (structure === 'array') ? [value] : {[key]: value}
-        this.value = value
+        this._value = value
+        this._value = Array.isArray(value) ? value[0] : value
+        this._isDirty = false
+        this._debug = debug
     }
 
-    get name() {
-        return this._name
+    get debug() {
+        return this._debug
+    }
+
+    set debug(value) {
+        this._debug = value
     }
 
     get key() {
         return this._key
     }
 
-    get type() {
-        return this._type
+    get mirthType() {
+        return this._mirthType
     }
 
     get structure() {
@@ -36,31 +38,35 @@ class MirthType {
 
     get value() {
         // return (this.structure === 'array') ? [this._value] : {[this.key]: this._value}
-        return (this.structure === 'array') ? this._value : {[this.key]: this._value}
+        // return (this.structure === 'array') ? this._value[0] : {[this.key]: this._value}
+        return this._value
     }
 
     set value(value) {
-        let val = (this.type === 'boolean') ? stringToBoolean(value) : value
-        if (this.structure === 'array') {
-            if (typeof val !== this._type) throw new Error(`Expected value to be typeof ${this._type} but typeof value is ${typeof val} for value: "${val}" with name: "${this.name}"`)
-            this._value[0] = val
-        } else {
-            this._value[this.key] = val
-        }
+        this._value = value
+        // this._value = (this.mirthType === 'boolean') ? stringToBoolean(value) : value
+        // let val = (this.mirthType === 'boolean') ? stringToBoolean(value) : value
+        // if (this.structure === 'array') {
+        //     if (typeof val !== this._mirthType) throw new Error(`Expected value to be typeof ${this._mirthType} but typeof value is ${typeof val} for value: "${val}" with name: "${this.name}"`)
+        //     this._value[0] = val
+        // } else {
+        //     this._value[this.key] = val
+        // }
+        this._isDirty = true
     }
 
-    /**
-     * Converts the Mirth Type into JSON that is ready to be converted into XML.
-     * @param replacer A function that transforms the results.
-     * @param space Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.
-     */
-    // stringify(replacer, space) {
-    //     let val = (this.structure === 'array') ? [value] : {[key]: value}
-    //     return JSON.stringify(val, replacer, space)
-    // }
+    get isDirty() {
+        return this._isDirty
+    }
 
-    toXml() {
-        return xmlBuilder.buildObject(this.value)
+    set isDirty(value) {
+        this._isDirty = false
+    }
+
+    toJson() {
+        if (this.structure === 'array') return [this._value]
+        if (this.structure === 'object') return {[this.key]: this._value}
+        return this._value
     }
 }
 

@@ -18,7 +18,7 @@ class MirthChannelProperties extends MirthObject {
         this._removeAttachmentsOnCompletion = mirthTypes.Boolean('removeAttachmentsOnCompletion')
         this._initialState = mirthTypes.Enum('initialState', ['STARTED', 'STOPPED', 'PAUSED', false])
         this._storeAttachments = mirthTypes.Boolean('storeAttachments')
-        this._metaDataColumns = mirthTypes.Raw('metaDataColumns') // TODO these are a bit more complex but not sure how to handle yet ie type/class maybe MirthTypeArray?
+        this._metaDataColumns = mirthTypes.Raw('metaDataColumns') // TODO these are a bit more complex but not sure how to handle yet ie mirthType/class maybe MirthTypeArray?
         this._attachmentProperties = mirthTypes.Raw('attachmentProperties') // TODO these more complex and need to be researched
         this._resourceIds = mirthTypes.Raw('resourceIds') // TODO no idea - research, maybe dependencies/library resources
         if (xmlJson) this.parseXmlJson(xmlJson)
