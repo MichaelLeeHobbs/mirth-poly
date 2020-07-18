@@ -420,9 +420,9 @@ locate-path@^3.0.0:
     path-exists "^3.0.0"
 
 lodash@^4.17.14, lodash@^4.17.3:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 lower-case-first@^1.0.0:
   version "1.0.2"
@@ -447,6 +447,15 @@ mime-types@^2.1.11:
   integrity sha512-WaFHS3MCl5fapm3oLxU4eYDw77IQM2ACcxQ9RIxfaC3ooc6PFuBMGZZsYpvoXS5D5QTWPieo1jjLdAm3TBP3cQ==
   dependencies:
     mime-db "1.40.0"
+
+mirth-api@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/mirth-api/-/mirth-api-0.0.5.tgz#7cd3e0a7f1e486eab7672e3cb740651fcc637cc7"
+  integrity sha512-f5tVYfskcnaI+CvzNvxbe9mGukosLoXuNyf1VDpaUaVk24yZj1QQVT6sg3j5I1+/fxll2RE1Vy9MtuaXCxVX4g==
+  dependencies:
+    change-case "^3.1.0"
+    swagger-client "^3.9.5"
+    xml2js "^0.4.22"
 
 no-case@^2.2.0, no-case@^2.3.2:
   version "2.3.2"
