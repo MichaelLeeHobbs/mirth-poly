@@ -448,6 +448,15 @@ mime-types@^2.1.11:
   dependencies:
     mime-db "1.40.0"
 
+mirth-api@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/mirth-api/-/mirth-api-0.0.5.tgz#7cd3e0a7f1e486eab7672e3cb740651fcc637cc7"
+  integrity sha512-f5tVYfskcnaI+CvzNvxbe9mGukosLoXuNyf1VDpaUaVk24yZj1QQVT6sg3j5I1+/fxll2RE1Vy9MtuaXCxVX4g==
+  dependencies:
+    change-case "^3.1.0"
+    swagger-client "^3.9.5"
+    xml2js "^0.4.22"
+
 no-case@^2.2.0, no-case@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
@@ -463,10 +472,10 @@ node-fetch@1.7.3:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
-  integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+node-fetch@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 object-inspect@^1.6.0:
   version "1.6.0"
