@@ -11,7 +11,7 @@
     "fs-extra": "^8.1.0",
     "mirth-api": "0.0.5",
     "node-fetch": "^2.6.0",
-    "swagger-client": "^3.9.5",
+    "swagger-client": "^3.18.5",
     "xml2js": "^0.4.22",
     "yargs": "^14.2.0"
   },
